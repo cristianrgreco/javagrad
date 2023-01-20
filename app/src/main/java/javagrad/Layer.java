@@ -1,20 +1,18 @@
 package javagrad;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Layer {
 
-  private final Neuron[] neurons;
+  private final List<Neuron> neurons;
 
   public Layer(int numberOfInputs, int numberOfNeurons) {
     this.neurons =
-        IntStream.range(0, numberOfNeurons)
-            .mapToObj(i -> new Neuron(numberOfInputs))
-            .toArray(Neuron[]::new);
+        IntStream.range(0, numberOfNeurons).mapToObj(i -> new Neuron(numberOfInputs)).toList();
   }
 
-  public Value[] call(Value[] inputs) {
-    return Arrays.stream(this.neurons).map(neuron -> neuron.call(inputs)).toArray(Value[]::new);
+  public List<Value> call(List<Value> inputs) {
+    return this.neurons.stream().map(neuron -> neuron.call(inputs)).toList();
   }
 }
