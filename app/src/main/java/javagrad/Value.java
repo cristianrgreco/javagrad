@@ -9,9 +9,9 @@ import lombok.ToString;
 @ToString(of = {"data"})
 public class Value {
 
-  private final double data;
   private final Value[] children;
   private double gradient = 0f;
+  private double data;
   private Runnable backward = () -> {};
 
   public Value(double data) {
@@ -105,7 +105,15 @@ public class Value {
     return gradient;
   }
 
+  public void resetGradient() {
+    this.gradient = 0;
+  }
+
   public double data() {
     return data;
+  }
+
+  public void setData(double data) {
+    this.data = data;
   }
 }
