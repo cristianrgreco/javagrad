@@ -45,10 +45,11 @@ public class Main {
     System.out.println(mlp.parameters().size());
 
     /*
-    TODO Need to implement other operations in the Value class such as exp, sub, div, etc.
+    Need to implement other operations in the Value class such as exp, sub, div, etc.
     That way can add the loss function to the computational graph and perform backward propagation on the loss.
     Because what we want is for each node's gradient to be the derivative of the loss, such that we can nudge the
-    gradient of the nodes in the opposite direction of the loss, to reduce the loss.
+    gradient of the nodes in the opposite direction of the loss, to reduce the loss (gradient descent). Once done,
+    create training loop showing the loss at each step.
      */
   }
 }
