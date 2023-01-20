@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@ToString(of = {"data", "gradient"})
+@EqualsAndHashCode(of = {"data", "gradient"})
 public class Value {
 
   private final float data;
@@ -18,7 +21,7 @@ public class Value {
     this.children = new Value[0];
   }
 
-  public Value(float data, Value[] children) {
+  private Value(float data, Value[] children) {
     this.data = data;
     this.children = children;
   }
@@ -40,6 +43,16 @@ public class Value {
     backward = () -> {
       this.gradient += anotherValue.data * result.gradient;
       anotherValue.gradient += this.data * result.gradient;
+    };
+
+    return result;
+  }
+
+  public Value tanh() {
+    var result = new Value((float) Math.tanh(this.data), new Value[]{this});
+
+    backward = () -> {
+      this.gradient += (1 - result.data * result.data) * result.gradient;
     };
 
     return result;
@@ -85,30 +98,5 @@ public class Value {
 
   public float data() {
     return data;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Value value1 = (Value) o;
-    return Float.compare(value1.data, data) == 0 && Float.compare(value1.gradient, gradient) == 0;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(data, gradient);
-  }
-
-  @Override
-  public String toString() {
-    return "Value{" +
-        "value=" + data +
-        ", gradient=" + gradient +
-        '}';
   }
 }
