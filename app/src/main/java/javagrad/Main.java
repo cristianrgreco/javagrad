@@ -26,22 +26,22 @@ public class Main {
 
     var losses =
         IntStream.range(0, inputs.length)
-            .mapToDouble(
+            .mapToObj(
                 i -> {
                   var expected = desired[i];
-                  var actual = outputBeforeTraining.get(i).get(0).data();
-                  return Math.pow((actual - expected), 2);
+                  var actual = outputBeforeTraining.get(i).get(0);
+                  return actual.sub(new Value(expected)).pow(2);
                 })
-            .toArray();
+            .toList();
 
-    System.out.println("\nLoss using mean squared error loss: ");
-    Arrays.stream(losses).forEach(System.out::println);
+    System.out.println("\nLoss (using mean squared error loss): ");
+    losses.forEach(System.out::println);
 
-    var loss = Arrays.stream(losses).sum();
+    var loss = losses.stream().reduce(Value::add).orElseThrow();
     System.out.println("\nTotal loss:");
     System.out.println(loss);
 
-    System.out.println("\nThe neural network has the following number of weights and biases:");
+    System.out.println("\nThe neural network has the following number of parameters (weights + biases):");
     System.out.println(mlp.parameters().size());
 
     /*

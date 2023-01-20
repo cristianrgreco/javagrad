@@ -35,12 +35,27 @@ public class Value {
     return result;
   }
 
+  public Value sub(Value anotherValue) {
+    var negated = anotherValue.mul(new Value(-1));
+    return this.add(negated);
+  }
+
   public Value mul(Value anotherValue) {
     var result = new Value(this.data * anotherValue.data, new Value[]{this, anotherValue});
 
     result.backward = () -> {
       this.gradient += anotherValue.data * result.gradient;
       anotherValue.gradient += this.data * result.gradient;
+    };
+
+    return result;
+  }
+
+  public Value pow(int power) {
+    var result = new Value(Math.pow(this.data, power), new Value[]{this});
+
+    result.backward = () -> {
+      this.gradient += (power * Math.pow(this.data, power - 1d)) * result.gradient;
     };
 
     return result;

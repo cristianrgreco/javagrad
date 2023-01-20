@@ -21,17 +21,16 @@ public class Neuron {
   }
 
   public Value call(List<Value> inputs) {
-    var activation =
-        IntStream.range(0, this.numberOfInputs)
-            .mapToDouble(
-                i -> {
-                  var input = inputs.get(i);
-                  var weight = this.weights.get(i);
-                  return input.data() * weight.data() + this.bias.data();
-                })
-            .sum();
-
-    return new Value(activation).tanh();
+    return IntStream.range(0, this.numberOfInputs)
+        .mapToObj(
+            i -> {
+              var input = inputs.get(i);
+              var weight = weights.get(i);
+              return weight.mul(input).add(bias);
+            })
+        .reduce(Value::add)
+        .orElseThrow()
+        .tanh();
   }
 
   public List<Value> parameters() {
