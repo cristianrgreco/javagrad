@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import lombok.ToString;
 
-@ToString(of = {"data", "gradient"})
+@ToString(of = {"data"})
 public class Value {
 
   private final double data;

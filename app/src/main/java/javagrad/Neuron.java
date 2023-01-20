@@ -3,6 +3,7 @@ package javagrad;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Neuron {
 
@@ -31,6 +32,10 @@ public class Neuron {
             .sum();
 
     return new Value(activation).tanh();
+  }
+
+  public List<Value> parameters() {
+    return Stream.concat(this.weights.stream(), Stream.of(this.bias)).toList();
   }
 
   private double randomNumberBetween(double start, double end) {

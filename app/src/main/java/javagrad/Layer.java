@@ -15,4 +15,8 @@ public class Layer {
   public List<Value> call(List<Value> inputs) {
     return this.neurons.stream().map(neuron -> neuron.call(inputs)).toList();
   }
+
+  public List<Value> parameters() {
+    return this.neurons.stream().flatMap(neuron -> neuron.parameters().stream()).toList();
+  }
 }

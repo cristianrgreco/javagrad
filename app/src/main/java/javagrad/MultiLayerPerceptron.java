@@ -32,6 +32,15 @@ public class MultiLayerPerceptron {
     return activations;
   }
 
+  public List<Value> parameters() {
+    return this.layers.stream().flatMap(layer -> layer.parameters().stream()).toList();
+  }
+
+  /**
+   * We must take into account the input layer when creating our MLP. Note how the inputs of the
+   * next layer, is the number of neurons from the previous layer. <img
+   * src="../../../../../mlp.png"/>
+   */
   private List<Integer> numberOfInputsPerLayer(int numberOfInputs, int[] numberOfNeuronsPerLayer) {
     return IntStream.concat(IntStream.of(numberOfInputs), Arrays.stream(numberOfNeuronsPerLayer))
         .boxed()
