@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
-@ToString(of = {"data", "gradient"})
-@EqualsAndHashCode(of = {"data", "gradient"})
 public class Value {
 
   private final float data;
   private final Value[] children;
-  private float gradient = 0.0f;
+  private float gradient = 0f;
   private Runnable backward = () -> {};
 
   public Value(float data) {
@@ -29,7 +25,7 @@ public class Value {
   public Value add(Value anotherValue) {
     var result = new Value(this.data + anotherValue.data, new Value[]{this, anotherValue});
 
-    backward = () -> {
+    result.backward = () -> {
       this.gradient += result.gradient;
       anotherValue.gradient += result.gradient;
     };
@@ -40,7 +36,7 @@ public class Value {
   public Value mul(Value anotherValue) {
     var result = new Value(this.data * anotherValue.data, new Value[]{this, anotherValue});
 
-    backward = () -> {
+    result.backward = () -> {
       this.gradient += anotherValue.data * result.gradient;
       anotherValue.gradient += this.data * result.gradient;
     };
@@ -51,7 +47,7 @@ public class Value {
   public Value tanh() {
     var result = new Value((float) Math.tanh(this.data), new Value[]{this});
 
-    backward = () -> {
+    result.backward = () -> {
       this.gradient += (1 - result.data * result.data) * result.gradient;
     };
 
@@ -59,9 +55,9 @@ public class Value {
   }
 
   public void backward() {
-    this.gradient = 1.0f;
     var values = topologicalSort();
     Collections.reverse(values);
+    this.gradient = 1f;
     values.forEach(Value::backwardInternal);
   }
 
@@ -70,26 +66,22 @@ public class Value {
   }
 
   private List<Value> topologicalSort() {
+    var values = new ArrayList<Value>();
     var visited = new HashSet<Value>();
-    var stack = new ArrayList<Value>();
-    var result = new ArrayList<Value>();
+    dfs(this, values, visited);
+    return values;
+  }
 
-    stack.add(this);
-
-    while (!stack.isEmpty()) {
-      var current = stack.remove(stack.size() - 1);
-
-      if (visited.contains(current)) {
-        continue;
-      }
-
-      visited.add(current);
-      result.add(current);
-
-      Collections.addAll(stack, current.children);
+  private void dfs(Value current, List<Value> values, HashSet<Value> visited) {
+    if (visited.contains(current)) {
+      return;
     }
 
-    return result;
+    visited.add(current);
+    for (var child : current.children) {
+      dfs(child, values, visited);
+    }
+    values.add(current);
   }
 
   public float gradient() {

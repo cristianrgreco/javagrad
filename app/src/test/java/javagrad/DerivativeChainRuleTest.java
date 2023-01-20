@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 class DerivativeChainRuleTest {
 
+  /**
+   * <img src="../../../../../graph1.png"/>
+   */
   @Test
   void x() {
     var h = 0.0001f;
