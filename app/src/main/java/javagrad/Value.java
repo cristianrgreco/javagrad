@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import lombok.ToString;
 
+@ToString(of = {"data", "gradient"})
 public class Value {
 
-  private final float data;
+  private final double data;
   private final Value[] children;
-  private float gradient = 0f;
+  private double gradient = 0f;
   private Runnable backward = () -> {};
 
-  public Value(float data) {
+  public Value(double data) {
     this.data = data;
     this.children = new Value[0];
   }
 
-  private Value(float data, Value[] children) {
+  private Value(double data, Value[] children) {
     this.data = data;
     this.children = children;
   }
@@ -45,7 +47,7 @@ public class Value {
   }
 
   public Value tanh() {
-    var result = new Value((float) Math.tanh(this.data), new Value[]{this});
+    var result = new Value(Math.tanh(this.data), new Value[]{this});
 
     result.backward = () -> {
       this.gradient += (1 - result.data * result.data) * result.gradient;
@@ -84,11 +86,11 @@ public class Value {
     values.add(current);
   }
 
-  public float gradient() {
+  public double gradient() {
     return gradient;
   }
 
-  public float data() {
+  public double data() {
     return data;
   }
 }

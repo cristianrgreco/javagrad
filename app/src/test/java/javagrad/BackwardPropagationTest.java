@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class BackwardPropagationTest {
 
-  /**
-   * <img src="../../../../../graph2.png"/>
-   */
+  /** <img src="../../../../../graph2.png"/> */
   @Test
   void backwardPropagation() {
 
