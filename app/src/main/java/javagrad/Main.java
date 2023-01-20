@@ -55,7 +55,7 @@ public class Main {
                 parameter.setData(newData);
               });
 
-      if (i % 50 == 0) {
+      if (i < 50 || i % 50 == 0) {
         System.out.println(i + " " + loss.data());
       }
     }
