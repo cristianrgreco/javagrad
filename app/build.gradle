@@ -17,7 +17,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'javagrad.App'
+    mainClass = 'javagrad.Main'
 }
 
 tasks.named('test') {
