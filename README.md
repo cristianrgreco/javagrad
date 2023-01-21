@@ -39,9 +39,7 @@ In the case of this neuron, the output of `5` would become `0.999`, resulting in
 ### Purpose of a neural network
 
 Given an input, and an expected output, a neural network is able to train itself to produce expected outputs given
-similar inputs.
-
-For example, given the following data set `2, 3, -1`, we want the neural network to output `1`.
+similar inputs. For example, given the following `2, 3, -1`, we want the neural network to output `1`.
 
 While this may not seem very useful, you could imagine the data set being weather data, or stock market data, and the
 output being a prediction of the next value. With ChatGPT for example, the input would be your tokenized text,
