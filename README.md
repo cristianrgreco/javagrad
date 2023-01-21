@@ -139,7 +139,7 @@ This process of recursively calculating the derivative of a value with respect t
 propagation", and it is at the core of training a neural network. You can see that knowing how a change in `a`
 affects `e`, allows us to adjust the value of `a` to either increase or decrease `e`.
 
-These derivatives are known as gradients as they "point" in the direction of the loss. We can therefore
+In neural networks these derivatives are known as gradients as they "point" in the direction of the loss. We can therefore
 reduce the loss by adjusting the gradients in the opposite direction of the loss (down!), this process is known as
 "gradient descent".
 
