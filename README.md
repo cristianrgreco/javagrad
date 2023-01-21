@@ -17,7 +17,7 @@ See implementations:
 
 ### Neuron
 
-A neuron is simply an object that has a bias, and an associated weight for each of its inputs. 
+A neuron is simply an object that has a bias, and an associated weight for each of its inputs.
 
 The bias can be seen as the neuron's "trigger happiness".
 
@@ -38,8 +38,10 @@ In the case of this neuron, the output of `5` would become `0.999`, resulting in
 
 ### Purpose of a neural network
 
-An example usage of a neural network, is that given the following data set `2, 3, -1`, we want the neural network to
-output `1`.
+Given an input, and an expected output, a neural network is able to train itself to produce expected outputs given
+similar inputs.
+
+For example, given the following data set `2, 3, -1`, we want the neural network to output `1`.
 
 While this may not seem very useful, you could imagine the data set being weather data, or stock market data, and the
 output being a prediction of the next value. With ChatGPT for example, the input would be your tokenized text,
@@ -153,18 +155,18 @@ implementation of the training process in [Main.java](app/src/main/java/javagrad
 with `./gradlew run`, which given the following inputs:
 
 ```java
-var inputs = new double[][] {
-  {2f, 3f, -1f},
-  {3f, -1f, 0.5f},
-  {0.5f, 1f, 1f},
-  {1f, 1f, -1f}
-};
+var inputs=new double[][]{
+    {2f,3f,-1f},
+    {3f,-1f,0.5f},
+    {0.5f,1f,1f},
+    {1f,1f,-1f}
+    };
 ```
 
 Wants the following outputs:
 
 ```java
-var desired = new double[] {1f, -1f, -1f, 1f}
+var desired=new double[]{1f,-1f,-1f,1f}
 ```
 
 And this is the result with a `4, 4, 1` neural network as per the diagram above:
