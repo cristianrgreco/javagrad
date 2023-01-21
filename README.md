@@ -1,6 +1,6 @@
 # Neural Networks
 
-> Based on [The spelled-out intro to neural networks and backpropagation: building micrograd](https://www.youtube.com/watch?v=VMj-3S1tku0), by Andrej Karpathy
+> Based on [The spelled-out intro to neural networks and backpropagation](https://www.youtube.com/watch?v=VMj-3S1tku0), by Andrej Karpathy
 
 ### Definition
 
