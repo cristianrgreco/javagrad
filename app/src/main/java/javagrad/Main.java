@@ -51,11 +51,11 @@ public class Main {
       mlp.parameters()
           .forEach(
               parameter -> {
-                var newData = parameter.data() + ((-0.01) * parameter.gradient());
+                var newData = parameter.data() + ((-0.05) * parameter.gradient());
                 parameter.setData(newData);
               });
 
-      if (i < 50 || i % 50 == 0) {
+      if (i < 50 || i % 100 == 0) {
         System.out.println(i + " " + loss.data());
       }
     }

@@ -23,13 +23,13 @@ public class MultiLayerPerceptron {
   }
 
   public List<Value> call(double[] inputs) {
-    var activations = Arrays.stream(inputs).mapToObj(Value::new).toList();
+    var inputValues = Arrays.stream(inputs).mapToObj(Value::new).toList();
 
     for (Layer layer : layers) {
-      activations = layer.call(activations);
+      inputValues = layer.call(inputValues);
     }
 
-    return activations;
+    return inputValues;
   }
 
   public List<Value> parameters() {
