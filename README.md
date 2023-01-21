@@ -29,8 +29,8 @@ there are multiple inputs, the output is simply the sum of all outputs.
 For example, let the weight be `2`, the bias be `3`. For a single input of `1`, the neuron would
 output `1*2+3 = 5`.
 
-The activation function determines whether the or not the neuron will be activated. An activation function will usually
-normalise the outputs to values within a range. Tanh is such a function which has a range between `-1` and `1`:
+The activation function determines whether the or not the neuron will be activated. An activation function will
+normalise the outputs to values within a range. Tanh is such a function, with a range between `-1` and `1`:
 
 ![tanh](tanh.png)
 
