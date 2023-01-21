@@ -36,7 +36,7 @@ normalise the outputs to values within a range. Tanh is such a function, with a 
 
 In the case of this neuron, the output of `5` would become `0.999`, resulting in the neuron being very active.
 
-### Purpose
+### Purpose of a neural network
 
 An example usage of a neural network, is that given the following data set `2, 3, -1`, we want the neural network to
 output `1`.
