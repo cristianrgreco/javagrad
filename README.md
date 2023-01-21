@@ -153,7 +153,7 @@ implementation of the training process in [Main.java](app/src/main/java/javagrad
 with `./gradlew run`, which given the following inputs:
 
 ```java
-var inputs=new double[][]{
+var inputs = new double[][]{
     {2f,3f,-1f},
     {3f,-1f,0.5f},
     {0.5f,1f,1f},
@@ -164,7 +164,7 @@ var inputs=new double[][]{
 Wants the following outputs:
 
 ```java
-var desired=new double[]{1f,-1f,-1f,1f}
+var desired = new double[]{1f,-1f,-1f,1f}
 ```
 
 And this is the result with a `4, 4, 1` neural network as per the diagram above:
