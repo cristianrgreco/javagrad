@@ -141,7 +141,11 @@ affects `e`, allows us to adjust the value of `a` to either increase or decrease
 
 In neural networks these derivatives are known as gradients as they "point" in the direction of the loss. We can therefore
 reduce the loss by adjusting the gradients in the opposite direction of the loss (down!), this process is known as
-"gradient descent".
+"gradient descent". 
+
+This is a visual example of a mathematical expression where back propagation has occurred, see the gradients for each node with respect to the loss `L`.
+
+![expression](graph1.png)
 
 ### Training continued
 
