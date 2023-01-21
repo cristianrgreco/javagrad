@@ -17,15 +17,16 @@ See implementations:
 
 ### Neuron
 
-A neuron is simply an object that has an associated weight for each of its inputs, and a bias. The bias can be seen as
-the neuron's "trigger happiness".
+A neuron is simply an object that has a bias, and an associated weight for each of its inputs. 
+
+The bias can be seen as the neuron's "trigger happiness".
 
 ![neuron](neuron.png)
 
-When an input flows into the neuron, it is manipulated by the weight and bias of the neuron, to produce an output. If
+When an input flows into the neuron, it is manipulated by its weight and bias, to produce an output. If
 there are multiple inputs, the output is simply the sum of all outputs.
 
-For example, let the weight be `2`, and the bias be `3`. If there is a single input of `1`, then the neuron would
+For example, let the weight be `2`, the bias be `3`. For a single input of `1`, the neuron would
 output `1*2+3 = 5`.
 
 The activation function determines whether the or not the neuron will be activated. An activation function will usually
