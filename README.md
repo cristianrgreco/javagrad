@@ -9,6 +9,9 @@ In this picture we have 3 inputs, 2 layers comprising 4 neurons, and 1 output la
 
 ![multilayer perceptron](mlp.png)
 
+Some layers are labelled as "hidden" because a user of the neural network wouldn't directly interact with them. The user
+would just provide inputs, and get outputs. Everything in between from a user's perspective is hidden.
+
 See implementations:
 
 - [Neuron.java](app/src/main/java/javagrad/Neuron.java)
@@ -89,7 +92,7 @@ de/dd = ???
 e = d + c
 
 Derivative formula is: 
-(f(x+h)-(fx))/h
+(f(x+h)-f(x))/h
 
 Substitute f(x) for (d+c):
 (((d+h+c)-(d+c))/h
@@ -114,7 +117,7 @@ dd/da = ???
 d = a * b
 
 Derivative formula is: 
-(f(x+h)-(fx))/h
+(f(x+h)-f(x))/h
 
 Substitute f(x) for (a*b):
 (((a+h)*b)-(a*b))/h
@@ -139,11 +142,13 @@ This process of recursively calculating the derivative of a value with respect t
 propagation", and it is at the core of training a neural network. You can see that knowing how a change in `a`
 affects `e`, allows us to adjust the value of `a` to either increase or decrease `e`.
 
-In neural networks these derivatives are known as gradients as they "point" in the direction of the loss. We can therefore
+In neural networks these derivatives are known as gradients as they "point" in the direction of the loss. We can
+therefore
 reduce the loss by adjusting the gradients in the opposite direction of the loss (down!), this process is known as
-"gradient descent". 
+"gradient descent".
 
-This is a visual example of a mathematical expression where back propagation has occurred, see the gradients for each node with respect to the loss `L`.
+This is a visual example of a mathematical expression where back propagation has occurred, see the gradients for each
+node with respect to the loss `L`.
 
 ![expression](graph1.png)
 
@@ -157,18 +162,18 @@ implementation of the training process in [Main.java](app/src/main/java/javagrad
 with `./gradlew run`, which given the following inputs:
 
 ```java
-var inputs = new double[][]{
+var inputs=new double[][]{
     {2f,3f,-1f},
     {3f,-1f,0.5f},
     {0.5f,1f,1f},
     {1f,1f,-1f}
-};
+    };
 ```
 
 Wants the following outputs:
 
 ```java
-var desired = new double[]{1f,-1f,-1f,1f}
+var desired=new double[]{1f,-1f,-1f,1f}
 ```
 
 And this is the result with a `4, 4, 1` neural network as per the diagram above:
