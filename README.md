@@ -158,7 +158,7 @@ var inputs=new double[][]{
     {3f,-1f,0.5f},
     {0.5f,1f,1f},
     {1f,1f,-1f}
-    };
+};
 ```
 
 Wants the following outputs:
