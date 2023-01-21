@@ -1,5 +1,7 @@
 # Neural Networks
 
+> Based on [The spelled-out intro to neural networks and backpropagation: building micrograd](https://www.youtube.com/watch?v=VMj-3S1tku0), by Andrej Karpathy
+
 ### Definition
 
 A neural network is simply a series of layers of interconnected nodes (neurons), where inputs flow through the layers,
